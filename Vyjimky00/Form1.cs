@@ -123,8 +123,10 @@ namespace Vyjimky00
         {
             //Pozor! nejsou ošetřeny výjimky  FormatException a OverflowException
             int a, b, soucin;
-            
-            
+            a = int.Parse(textBox4.Text);
+            b = int.Parse(textBox5.Text);
+            soucin = a * b;
+            MessageBox.Show(soucin.ToString());
         }
 
         private void button6_Click(object sender, EventArgs e)
