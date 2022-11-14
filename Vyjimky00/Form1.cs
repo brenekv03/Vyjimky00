@@ -122,12 +122,27 @@ namespace Vyjimky00
         private void button5_Click(object sender, EventArgs e)
         {
             //Pozor! nejsou ošetřeny výjimky  FormatException a OverflowException
-            int a, b, soucin;
+            /*int a, b, soucin;
             a = int.Parse(textBox4.Text);
             b = int.Parse(textBox5.Text);
             try
             {
                 soucin = checked(a * b);
+                MessageBox.Show(soucin.ToString());
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Zadejte menší hodnotu");
+            }*/
+            try
+            {
+                int a, b, soucin;
+                a = int.Parse(textBox4.Text);
+                b = int.Parse(textBox5.Text);
+                checked
+                {
+                    soucin = checked(a * b);
+                }
                 MessageBox.Show(soucin.ToString());
             }
             catch (OverflowException)
