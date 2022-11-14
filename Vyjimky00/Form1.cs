@@ -125,8 +125,15 @@ namespace Vyjimky00
             int a, b, soucin;
             a = int.Parse(textBox4.Text);
             b = int.Parse(textBox5.Text);
-            soucin = a * b;
-            MessageBox.Show(soucin.ToString());
+            try
+            {
+                soucin = checked(a * b);
+                MessageBox.Show(soucin.ToString());
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Zadejte menší hodnotu");
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
