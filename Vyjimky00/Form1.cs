@@ -21,26 +21,102 @@ namespace Vyjimky00
         private void button1_Click(object sender, EventArgs e)
         {
             int a,b,podil;
-            
-            
+            if (int.TryParse(textBox1.Text, out a))
+            {
+                if (int.TryParse(textBox2.Text, out b))
+                {
+                    if (b != 0)
+                    {
+                        podil = a / b;
+                        MessageBox.Show(podil.ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nelze dělit nulou");
+                        textBox2.Focus();
+                        textBox2.SelectAll();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Zadejte cislo");
+                    textBox2.Focus();
+                    textBox2.SelectAll();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Zadejte cislo");
+                textBox1.Focus();
+                textBox1.SelectAll();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             int a, b, podil;
-            
-            
+            try 
+            {
+                a = int.Parse(textBox1.Text);
+                b = int.Parse(textBox2.Text);
+                podil = a / b;
+                MessageBox.Show(podil.ToString());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             int a, b, podil;
-            
+            try
+            {
+                a = int.Parse(textBox1.Text);
+                try
+                {
+                    b = int.Parse(textBox2.Text);
+                        podil = a / b;
+                        MessageBox.Show("podil je: " + podil);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("musíš zadat celé číslo");
+                    textBox2.Focus();
+                    textBox2.SelectAll();
+
+                }
+                catch (DivideByZeroException)
+                {
+                    MessageBox.Show("Nulou delit nelze.");
+                    textBox2.Focus();
+                    textBox2.SelectAll();
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("musíš zadat celé číslo");
+                textBox1.Focus();
+                textBox1.SelectAll();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+            int[] p = new int[10];
+            try
+            {
+                int index = int.Parse(textBox3.Text);
+                p[index] = 100;
+                MessageBox.Show("Do prvku pole se zadaným pole bylo zadáno číslo");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("Zadej maximálně 9");
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
