@@ -72,7 +72,7 @@ namespace Vyjimky00
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int a, b, podil;
+            int a, b, podil;//Nemame ošetřený overflow
             try
             {
                 a = int.Parse(textBox1.Text);
@@ -176,7 +176,21 @@ namespace Vyjimky00
             //Metodu, ve které se použivá using, musíme stejně volat v try-catch bloku.
 
             listBox1.Items.Clear();
-            
+            try
+            {
+                using(StreamReader sr = new StreamReader("text.txt"))
+                {
+                    while(!sr.EndOfStream)
+                    {
+                        listBox1.Items.Add(sr.ReadLine());
+                    }
+                    //sr.Close();  //Nemusíme psát kvuli using
+                }
+            }
+            catch(FileNotFoundException)
+            {
+
+            }
 
         }
 
@@ -211,8 +225,23 @@ namespace Vyjimky00
             //Zobrazte textový soubor Text.txt v listBox1
             //Pomocí výjimky ošetřete existenci souboru
             listBox1.Items.Clear();
-            
-            
+            StreamReader sr = new StreamReader("text.txt");
+            try
+            {
+                sr = new StreamReader("text.txt");
+                listBox1.Items.Add(sr.ReadLine());
+                listBox1.Items.Add(sr.ReadLine());
+                listBox1.Items.Add(sr.ReadLine());
+                //sr.Close();
+            }
+            catch(FileNotFoundException)
+            {
+                MessageBox.Show("Neexistuje soubor");
+            }
+            finally
+            {
+             if(sr!=null)   sr.Close();
+            }
         }
     }
 }
